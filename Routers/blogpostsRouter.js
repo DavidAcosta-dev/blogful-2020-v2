@@ -15,11 +15,11 @@ const makeSomePosts = (blogs) => blogs.map(b => BlogPosts.create(b.title, b.cont
 
 makeSomePosts(blogs);//calling function we made.
 
-router.get('/blog-posts', (req, res) => {
+router.get('/', (req, res) => {
     res.status(200).json(BlogPosts.get());
 });
 
-router.post('/blog-posts', (req, res) => {
+router.post('/', (req, res) => {
     console.log(req.body);
     const requiredFields = ['title', 'content', 'author'];
     const missingFields = [];
@@ -36,7 +36,7 @@ router.post('/blog-posts', (req, res) => {
     res.status(201).send(`Awesome, we posted your object!`);
 });// end of post
 
-router.put('/blog-posts/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     console.log(req.params.id);
     console.log(req.body);
     const requiredFields = ["title", "content", "author", "id"];
@@ -58,7 +58,7 @@ router.put('/blog-posts/:id', (req, res) => {
     res.status(202).send('We have successfully updated your object!');
 });//end of put
 
-router.delete('/blog-posts/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     console.log(req.params.id);
     BlogPosts.delete(req.params.id);
     res.status(204).send(`deleted post with id of ${req.params.id}`);
