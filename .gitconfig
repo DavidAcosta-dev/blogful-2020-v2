@@ -1,0 +1,2 @@
+[core]
+    exclude=/ect/.gitignore-global
