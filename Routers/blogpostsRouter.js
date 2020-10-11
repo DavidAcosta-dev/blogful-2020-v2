@@ -32,8 +32,7 @@ router.post('/', (req, res) => {
 
     missingFields.length > 0 ? res.status(400).send(`Please check your Blog post object. Missing following fields: ${missingFields}`) : null;
     const { title, author, content } = req.body;
-    BlogPosts.create(title, content, author);
-    res.status(201).send(`Awesome, we posted your object!`);
+    res.status(201).json(BlogPosts.create(title, content, author));
 });// end of post
 
 router.put('/:id', (req, res) => {
@@ -54,14 +53,15 @@ router.put('/:id', (req, res) => {
     };
     missingFields.length > 0 ? res.status(400).send(`Please check your Blog post object. Missing following fields: ${missingFields}`) : null;
 
-    BlogPosts.update(req.body);
-    res.status(202).send('We have successfully updated your object!');
+
+    res.status(200).json(BlogPosts.update(req.body));
 });//end of put
 
 router.delete('/:id', (req, res) => {
     console.log(req.params.id);
     BlogPosts.delete(req.params.id);
-    res.status(204).send(`deleted post with id of ${req.params.id}`);
+    console.log(`DELETED blog post with id of ----> ${req.params.id}`);
+    res.status(204).end();
 })//end of delete
 
 
