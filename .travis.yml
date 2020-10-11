@@ -2,3 +2,12 @@ language: node_js
 node_js: node
 services:
 - mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: DRWoykktJLlKciqW5HaiuLdOvUG+D3NAZOj1TSx67IAb+fh+mT6ajO/Ia7h9MyAl5tvWDXyiak3fAuZ8IK7Pv1F1S6+Gn0GH/pVjxKAt/fJTLoodT6evd0+1mlEaqT1S4qLun+4dPGmKGNPWt7y6sEif6cXieiJoR8A1yg4nTK1W0cxvRZiC2pKgHVPYsDYa1ZOTjvNggwLG2SPWW+FmVdON5JYIF3wldK/rFO6MsX5EA3g+1gYJorHIU05lOwJett1FTxgBVQs681Q+Iq5uYokhjggbJM45sav5QdmjgX/MaTAd55BmckTxHmiUhZTEQIMmWwIDmspEaV5YJp0xkSyUOUECx3jy1IXM3ruM7nxRfm9xNSx9tlQlwXHQHdoXATOAtfyIERB5JyJOxMVO8D8gOiFawU3s5wlI9HkS5hX7ZlGvMGkS0hKfha+2jxSTURDXjSx4uTyGHAv/wigwuozsoE/AaBi3EmcFZFpbsJPiqSgAfwU4/9QfAIilgJxQPaYMi/yULuanckNsQNaBnEwYl7seAT78XFt3aWaYaxGYBzbAAXQKzeny0ogvBY31TV8Ja+1Of63zI8OITn9W+JbfUbuKu0nG2uFC3DdvAB13jiFL6yL1uxXikaTedVumKI8pCBRBJNd3GKDogGXpvNIBOpQnRZDoLDfxteJOuDs=
+  app: calm-crag-22998
+  on:
+    repo: Acosta816/blogful-2020-v2
+    branch: main
+  skip_cleanup: 'true'
