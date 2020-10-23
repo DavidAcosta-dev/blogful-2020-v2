@@ -42,7 +42,7 @@ router.put('/:id', (req, res) => {
     const missingFields = [];
 
     if (req.params.id !== req.body.id) {
-        res.status(400).send(`Please check that you have entered a valid blogpost id in the url OR that bot the updating object and url ids match.`);
+        res.status(400).send(`Please check that you have entered a valid blogpost id in the url OR that both the updating object and url ids match.`);
     }
 
     for (i = 0; i < requiredFields.length; i++) {
