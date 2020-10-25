@@ -48,8 +48,7 @@ const BlogPosts = {
     },
     update: function (updatedPost) {
         const { id } = updatedPost;
-        const postIndex = this.posts.findIndex(
-            post => post.id === updatedPost.id);
+        const postIndex = this.posts.findIndex(post => post.id === updatedPost.id);
         if (postIndex === -1) {
             throw new StorageException(
                 `Can't update item \`${id}\` because doesn't exist.`)
