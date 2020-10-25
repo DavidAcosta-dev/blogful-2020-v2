@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
         .then(blogs => {
             res.json({
                 count: blogs.length,
-                blogs: blogs.map(blog => blog.easyRead())
+                blogs //: blogs.map(blog => blog.easyRead()) NEED TO FIX THE instance method here!!!!!!!
             });
         })
         .catch(err => {
