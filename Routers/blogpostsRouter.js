@@ -6,7 +6,7 @@ const { BlogPosts } = require('../models');
 
 //add volitile data to view and work with.
 const blogs = [
-    { title: "How to express app", content: "blahhhh balhhhhh", author: "Bonk the troll" },
+    { title: "How to express app", content: "blahhhh balhhhhh", author: { firstName: "Bonk", lastName: "The Troll" } },
     { title: "Bee and Puppycat moves to Netflix!", content: "The awesome show is now on Netflix! YEAHH het a GUM!!", author: "Bee the spaceperson" },
     { title: "Funnylying", content: "It's lying but they KNOW it's lying so it's funny. Funny lying...hehe get it?..", author: "Puppycat/Space Outlaw" }
 ]
