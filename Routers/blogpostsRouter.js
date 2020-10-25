@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
     missingFields.length > 0 ? res.status(400).send(`Please check your Blog post object. Missing following fields: ${missingFields}`) : null;
     const { title, author, content } = req.body;
     res.status(201).json(BlogPosts.create(title, content, author));
-});// end of post
+});// end of post/
 
 router.put('/:id', (req, res) => {
     console.log(req.params.id);
