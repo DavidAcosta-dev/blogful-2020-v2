@@ -32,7 +32,7 @@ blogPostSchema.methods.easyRead = () => {
 };
 
 
-const BlogPost = mongoose.model("BlogPost", blogPostSchema);
+const BlogPost = mongoose.model("BlogPost", blogPostSchema, 'blogPosts');
 
 module.exports = { BlogPost };//export the models, we have just one in here so far.
 
