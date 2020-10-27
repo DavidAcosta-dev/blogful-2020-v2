@@ -25,9 +25,11 @@ router.get('/', (req, res) => {
     });//end of queryableFields.forEach()
     BlogPost.find(filters)
         .then(blogs => {
+            console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+            console.log(blogs)
             res.json({
                 count: blogs.length,
-                blogs //: blogs.map(blog => blog.easyRead()) NEED TO FIX THE instance method here!!!!!!!
+                blogs: blogs.map(blog => blog.easyRead()) //NEED TO FIX THE instance method here!!!!!!!
             });
         })
         .catch(err => {

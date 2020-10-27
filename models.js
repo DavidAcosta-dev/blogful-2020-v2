@@ -15,14 +15,14 @@ const blogPostSchema = mongoose.Schema(
 );
 
 
-// *********************************************NOTE IF BROKEN, REPLACE ARROW FUNCTION WITH ANONYMOUS "FUNCTION"
+// *********************************************!!!!!!!NOTE: DO NOT use ARROW FUNCTION , only use ANONYMOUS "FUNCTION"
 //create an easy to read version of the author property that combines first and last into a single String.
-blogPostSchema.virtual("authorString").get(() => {
+blogPostSchema.virtual("authorString").get(function () {
     return `${this.author.firstName} ${this.author.lastName}`.trim();
 });
 
 //declare an instance method that spits back a version of the document that we want to display to end users.
-blogPostSchema.methods.easyRead = () => {
+blogPostSchema.methods.easyRead = function () {
     return {
         id: this._id,
         title: this.title,
