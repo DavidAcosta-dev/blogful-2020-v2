@@ -28,6 +28,11 @@ app.get('/', (req, res) => {
 //using express router as middleware
 app.use('/blog-posts', blogpostsRouter);
 
+// catch-all endpoint if client makes request to non-existent endpoint
+app.use("*", function (req, res) {
+    res.status(404).json({ message: "Not Found" });
+});
+
 let server;
 
 const runServer = (databaseUrl, port = PORT) => {

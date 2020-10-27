@@ -18,6 +18,8 @@ const { BlogPost } = require('../models');
 router.get('/', (req, res) => {
     const filters = {};
     const queryableFields = ['title', 'author'];
+    console.log("YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO query below")
+    console.log(req.query)
     queryableFields.forEach(field => {
         if (req.query[field]) {
             filters[field] = req.query[field];
@@ -25,8 +27,6 @@ router.get('/', (req, res) => {
     });//end of queryableFields.forEach()
     BlogPost.find(filters)
         .then(blogs => {
-            console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
-            console.log(blogs)
             res.json({
                 count: blogs.length,
                 blogs: blogs.map(blog => blog.easyRead()) //NEED TO FIX THE instance method here!!!!!!!
