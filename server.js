@@ -14,6 +14,7 @@ const { PORT, DATABASE_URL } = require('./config');
 const app = express();
 
 const blogpostsRouter = require('./Routers/blogpostsRouter');
+const authorRouter = require('./Routers/authorsRouter');
 
 
 app.use(morgan('common'));
@@ -27,6 +28,7 @@ app.get('/', (req, res) => {
 
 //using express router as middleware
 app.use('/blog-posts', blogpostsRouter);
+app.use('/authors', authorRouter);
 
 // catch-all endpoint if client makes request to non-existent endpoint
 app.use("*", function (req, res) {
