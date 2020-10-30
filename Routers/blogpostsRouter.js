@@ -29,19 +29,9 @@ router.get('/', (req, res) => {
         })
         .catch(err => {
             console.error(err);
-            res.status(500).json({ message: "Internal server error" });
+            res.status(500).json({ error: "Something's gone awry, it's on our end for sure." });
         });
 });//end of GET/
-
-router.get('/test', (req, res) => {
-    BlogPost
-        .findById("5f9b5755024b3f6228356058")
-        .then(blog => {
-            console.log(blog);
-            res.json(blog.easyRead());
-            res.end();
-        })
-})
 
 
 //GET by ID using mongoose's convinience method for finding by id
@@ -51,9 +41,11 @@ router.get('/:id', (req, res) => {
         .then(blog => res.json(blog.easyRead()))
         .catch(err => {
             console.error(err);
-            res.status(500).json({ message: "Internal server error" });
+            res.status(500).json({ message: "Internal server error, on our end, appologies" });
         });
 });
+
+
 
 /*To post you must include an object in the request body in the following json format:
 {
@@ -79,12 +71,12 @@ router.post('/', (req, res) => {
     Author.findById(author_id)//passing the ObjectId found in the post request body's "author" field and using it to query through the author collection
         .then(auth => {
             if (auth) { //if the author exists, then we BlogPost.create(newpost)
-                BlogPost.create({
+                return BlogPost.create({
                     title,
                     content,
                     author: author_id
                 })
-                    .then(blog => res.status(201).json(blog.easyRead()))
+                    .then(blog => res.status(201).json(blog.easyRead())) //the prehook that populates author only runs on find() and findOne() so since we are just returning the json manually the author portion of this returned json will be undefined which is fine since the actual one in the database will reflect correctly when we fetch it.
                     .catch(err => {
                         console.error(err);
                         res.status(500).json({ message: "Internal server error" });
@@ -118,8 +110,12 @@ router.put('/:id', (req, res) => {
         }
     });
     BlogPost
-        .findByIdAndUpdate(req.params.id, { $set: toUpdate })
-        .then(blog => res.status(204).end())
+        .findByIdAndUpdate(req.params.id, { $set: toUpdate }, { new: true })
+        .then(updatedBlog => res.status(200).json({
+            id: updatedBlog.id,
+            title: updatedBlog.title,
+            content: updatedBlog.content
+        }))
         .catch(err => res.status(500).json({ message: "Internal server error" }));
 });//end of put
 
