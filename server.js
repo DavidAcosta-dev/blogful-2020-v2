@@ -37,7 +37,7 @@ app.use("*", function (req, res) {
 
 let server;
 
-const runServer = (databaseUrl, port = PORT) => {
+function runServer(databaseUrl, port = PORT) {
     return new Promise((resolve, reject) => {
         mongoose.connect(databaseUrl, err => {
             if (err) {
@@ -58,7 +58,7 @@ const runServer = (databaseUrl, port = PORT) => {
 };//end of runServer()
 
 
-const closeServer = () => {
+function closeServer() {
     return mongoose.disconnect().then(() => {
         return new Promise((resolve, reject) => {
             console.log('CLOSING SERVER');
